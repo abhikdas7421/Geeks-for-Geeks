@@ -94,44 +94,36 @@ struct Node
 // Should return true if tree is Sum Tree, else false
 class Solution
 {
-    public:
-    pair<bool, int> isSumTreeFast(Node* root) {
-        if(root == nullptr) {
-            pair<bool, int> p = make_pair(true, 0);
-            return p;
+    int sum(Node* root) {
+        if(root == NULL) {
+            return 0;
         }
         
-        if(root->left == nullptr && root->right == nullptr) {
-            pair<bool, int> p = make_pair(true, root->data);
-            return p;
-        }
-        
-        pair<bool, int> left = isSumTreeFast(root->left);
-        pair<bool, int> right = isSumTreeFast(root->right);
-        
-        bool leftAns = left.first;
-        bool rightAns = right.first;
-        
-        pair<bool, int> ans;
-        
-        if(left.second + right.second == root->data && leftAns && rightAns)
-        {
-            ans.first = true;
-        }
-        else 
-        {
-            ans.first = false;
-        }
-        ans.second = left.second + right.second + root->data;
-        
-        return ans;
+        return root->data + sum(root->left) + sum(root->right);
     }
     
+    public:
     bool isSumTree(Node* root)
     {
         // Your code here
-        return isSumTreeFast(root).first;
-         
+        if((root == NULL) || (root->left == NULL && root->right == NULL)) {
+            return true;
+        }
+        
+        
+        // 1 case solve
+        int left = sum(root->left);
+        // cout << left << " ";
+        int right = sum(root->right);
+        // cout << right << " ";
+        
+        bool curr = (root->data == left+right);
+        
+        // recursion
+        bool isSumTreeLeft = isSumTree(root->left);
+        bool isSumTreeRight = isSumTree(root->right);
+        
+        return (curr && isSumTreeLeft && isSumTreeRight);
     }
 };
 
