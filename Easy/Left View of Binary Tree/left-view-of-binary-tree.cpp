@@ -136,35 +136,27 @@ vector<int> leftView(Node *root)
        return ans;
    }
    
-   map<int, int> mp;
-   queue<pair<Node*, int>>q;
-   q.push({root, 0});
+   queue<Node*> que;
+   que.push(root);
    
-   while(!q.empty()) {
-       auto temp = q.front(); q.pop();
+   while(!que.empty()) {
+       int n = que.size();
        
-       Node* frontNode = temp.first;
-       int x = temp.second;
-       
-       if(mp.find(x) == mp.end()) {
-           mp[x] = frontNode->data;
+       for(int i = 0; i < n; i++) {
+           Node* temp = que.front(); que.pop();
+           if(i == 0) {
+               ans.push_back(temp->data);
+           }
+           
+           if(temp->left) {
+               que.push(temp->left);
+           }
+           
+           if(temp->right) {
+               que.push(temp->right);
+           }
        }
-       
-       if(frontNode->left) {
-           q.push({frontNode->left, x+1});
-       }
-       if(frontNode->right) {
-           q.push({frontNode->right, x+1});
-       }
-   }
-   
-   for(auto p : mp) {
-       ans.push_back(p.second);
    }
    
    return ans;
-   
-   
-   
-   
 }
