@@ -111,11 +111,11 @@ class Solution
         }
         
         map<int, int> mp;
-        queue<pair<Node*, int>> q;
-        q.push({root, 0});
+        queue<pair<Node*, int>> que;
+        que.push({root, 0});
         
-        while(!q.empty()) {
-            auto temp = q.front(); q.pop();
+        while(!que.empty()) {
+            auto temp = que.front(); que.pop();
             
             Node* frontNode = temp.first;
             int y = temp.second;
@@ -125,11 +125,11 @@ class Solution
             }
             
             if(frontNode->left) {
-                q.push({frontNode->left, y-1});
+                que.push({frontNode->left, y-1});
             }
             
             if(frontNode->right) {
-                q.push({frontNode->right, y+1});
+                que.push({frontNode->right, y+1});
             }
         }
         
