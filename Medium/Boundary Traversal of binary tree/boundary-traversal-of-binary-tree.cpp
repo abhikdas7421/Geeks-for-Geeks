@@ -105,7 +105,7 @@ struct Node
 
 class Solution {
 public:
-    void traversalLeft(Node *root, vector<int> &ans) {
+    void traversalLeft(Node* root, vector<int> &ans) {
         if((root == nullptr) || (root->left == nullptr && root->right == nullptr)) {
             return;
         }
@@ -115,12 +115,12 @@ public:
         if(root->left) {
             traversalLeft(root->left, ans);
         }
-        else{
+        else {
             traversalLeft(root->right, ans);
         }
     }
     
-    void traversalLeaf(Node *root, vector<int> &ans) {
+    void traversalLeaf(Node* root, vector<int> &ans) {
         if(root == nullptr) {
             return;
         }
@@ -134,18 +134,17 @@ public:
         traversalLeaf(root->right, ans);
     }
     
-    void traversalRight(Node *root, vector<int> &ans) {
-        if((root == nullptr) || (root->left == nullptr && root->right == nullptr)) {
+    void traversalRight(Node* root, vector<int> &ans) {
+        if(root == nullptr || (root->left == nullptr && root->right == nullptr)) {
             return;
         }
         
         if(root->right) {
-            traversalRight(root->right, ans);
+           traversalRight(root->right, ans);
         }
         else {
             traversalRight(root->left, ans);
         }
-        
         
         ans.push_back(root->data);
     }
@@ -154,21 +153,23 @@ public:
     {
         //Your code here
         vector<int> ans;
-        if(root == nullptr) return ans;
+        if(root == nullptr) {
+            return ans;
+        }
         
         ans.push_back(root->data);
         
-        //left boundary nodes
+        // left boundary node
         traversalLeft(root->left, ans);
         
-        // leaf nodes
+        // leaf node
         traversalLeaf(root->left, ans);
         traversalLeaf(root->right, ans);
         
-        // revese right boundary nodes
+        // right boundary node
         traversalRight(root->right, ans);
-        return ans;
         
+        return ans;
     }
 };
 
