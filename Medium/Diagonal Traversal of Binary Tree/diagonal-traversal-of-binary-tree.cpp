@@ -137,6 +137,7 @@ vector<int> diagonal(Node *root)
            if(temp->left) {
                que.push(temp->left);
            }
+           
            temp = temp->right;
        }
    }
