@@ -8,29 +8,26 @@ class Solution{
     void segregateElements(int arr[],int n)
     {
         // Your code goes here
-       vector<int> positive;
-       vector<int> neg;
-       
-       for(int i = 0; i < n; i++) {
-           if(arr[i] >= 0) {
-               positive.push_back(arr[i]);
-           }
-           else {
-               neg.push_back(arr[i]);
-           }
-       }
-       
-       int k = 0;
-       
-       for(int i = 0; i < positive.size(); i++) {
-           arr[k] = positive[i];
-           k++;
-       }
-       
-       for(int i = 0; i < neg.size(); i++) {
-           arr[k] = neg[i];
-           k++;
-       }
+        int temp[n];
+        
+        int j = 0;
+        for(int i = 0; i < n; i++) {
+            if(arr[i] >= 0) {
+                temp[j++] = arr[i];
+            }
+        }
+        
+        if(j == n || j == 0) {
+            return;
+        }
+        
+        for(int i = 0; i < n; i++) {
+            if(arr[i] < 0) {
+                temp[j++] = arr[i];
+            }
+        }
+        
+        memcpy(arr, temp, sizeof(temp));
     }
 };
 
