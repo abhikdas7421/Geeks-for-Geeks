@@ -13,12 +13,51 @@ class Solution{
     // l : starting index of the array i.e 0
     // r : ending index of the array i.e size-1
     // k : find kth smallest element and return using this function
+    int partition_algo(int arr[], int l, int r) {
+        int p = arr[l];
+        int i = l+1;
+        int j = r;
+        
+        while(i <= j) {
+            
+            if(arr[i] > p && arr[j] < p) {
+                swap(arr[i], arr[j]);
+                i++;
+                j--;
+            }
+            
+            if(arr[i] <= p) {
+                i++;
+            }
+            
+            if(arr[j] >= p) {
+                j--;
+            }
+        }
+        
+        swap(arr[j], arr[l]);
+        return j;
+    }
+    
     int kthSmallest(int arr[], int l, int r, int k) {
         //code here
-        sort(arr, arr+r+1);
+        int pivot_idx = 0;
         
-        int kthSmallestEle = arr[k-1];
-        return kthSmallestEle;
+        while(true) {
+            pivot_idx = partition_algo(arr, l, r);
+            
+            if(pivot_idx == k-1) {
+                break;
+            }
+            else if(pivot_idx > k-1) {
+                r = pivot_idx-1;
+            }
+            else {
+                l = pivot_idx+1;
+            }
+        }
+        
+        return arr[pivot_idx];
     }
 };
 
