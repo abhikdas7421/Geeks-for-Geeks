@@ -19,7 +19,8 @@ class Solution{
         
         while(i < n && j < m) {
             if(arr1[i] == arr2[j]) {
-                if(ans.size() == 0 || ans[ans.size()-1] != arr1[i]) {
+                
+                if(ans.empty() || ans.back() != arr1[i]) {
                     ans.push_back(arr1[i]);
                 }
                 i++;
@@ -27,13 +28,13 @@ class Solution{
             }
             else if(arr1[i] < arr2[j]) {
                 
-                if(ans.size() == 0 || ans[ans.size()-1] != arr1[i]) {
+                if(ans.empty() || ans.back() != arr1[i]) {
                     ans.push_back(arr1[i]);
                 }
                 i++;
             }
-            else if(arr1[i] > arr2[j]) {
-                if(ans.size() == 0 || ans[ans.size()-1] != arr2[j]) {
+            else {
+                if(ans.empty() || ans.back() != arr2[j]) {
                     ans.push_back(arr2[j]);
                 }
                 j++;
@@ -41,15 +42,15 @@ class Solution{
         }
         
         while(i < n) {
-            if(ans.size() == 0 || ans[ans.size()-1] != arr1[i]) {
-                ans.push_back(arr1[i]);
+            if(ans.empty() || ans.back() != arr1[i]) {
+                    ans.push_back(arr1[i]);
             }
             i++;
         }
         
         while(j < m) {
-            if(ans.size() == 0 || ans[ans.size()-1] != arr2[j]) {
-                ans.push_back(arr2[j]);
+            if(ans.empty() || ans.back() != arr2[j]) {
+                    ans.push_back(arr2[j]);
             }
             j++;
         }
