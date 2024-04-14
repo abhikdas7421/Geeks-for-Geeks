@@ -7,60 +7,56 @@ using namespace std;
 
 class Solution{
     public:
-    string calc_Sum(int *a,int n,int *b,int m) {
-         
+    string calc_Sum(int *a,int n,int *b,int m){
         // Complete the function
-        string nums;
-        int i = n-1, j = m-1;
+        int i = n-1;
+        int j = m-1;
+        
         int carry = 0;
+        string sum;
         
         while(i >= 0 && j >= 0) {
-            int sum = a[i]+b[j]+carry;
-            int lastDigit = sum%10;
-            carry = sum/10;
-            char ch = lastDigit+'0';
-            nums.push_back(ch);
+            int currSum = a[i]+b[j]+carry;
+            int digit = currSum%10;
+            carry = currSum/10;
             
-            i--;
-            j--;
+            sum.push_back(digit+'0');
+            
+            i--; j--;
         }
         
         while(i >= 0) {
-            int sum = a[i]+carry;
-            int lastDigit = sum%10;
-            carry = sum/10;
-            char ch = lastDigit + '0';
-            nums.push_back(ch);
+            int currSum = a[i]+carry;
+            int digit = currSum%10;
+            carry = currSum/10;
+            
+            sum.push_back(digit+'0');
             
             i--;
         }
         
         while(j >= 0) {
-            int sum = b[j] + carry;
-            int lastDigit = sum%10;
-            carry = sum/10;
-            char ch = lastDigit + '0';
-            nums.push_back(ch);
+            int currSum = b[j]+carry;
+            int digit = currSum%10;
+            carry = currSum/10;
+            
+            sum.push_back(digit+'0');
             
             j--;
         }
         
         while(carry) {
-            int lastDigit = carry%10;
-            char ch = lastDigit + '0';
-            nums.push_back(ch);
-            
+            int digit = carry%10;
             carry /= 10;
+            sum.push_back(digit+'0');
         }
         
-        while(nums.back() == '0') {
-            nums.pop_back();
+        while(sum.back() == '0') {
+            sum.pop_back();
         }
         
-        reverse(nums.begin(), nums.end());
-        return nums;
-        
-    
+        reverse(sum.begin(), sum.end());
+        return sum;
     }
 };
 
