@@ -5,6 +5,7 @@ using namespace std;
 
 // } Driver Code Ends
 //User function template for C++
+
 class Solution {
 public:
     vector<int> factorial(int N){
@@ -15,14 +16,10 @@ public:
         for(int i = 2; i <= N; i++) {
             
             int carry = 0;
-            
-            int j = 0;
-            while(j < ans.size()) {
+            for(int j = 0; j < ans.size(); j++) {
                 int x = (ans[j]*i) + carry;
                 ans[j] = x%10;
                 carry = x/10;
-                
-                j++;
             }
             
             while(carry) {
