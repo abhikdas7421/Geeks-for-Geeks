@@ -12,9 +12,10 @@ class Solution {
     // Function to return the position of the first repeating element.
     int firstRepeated(int arr[], int n) {
         // code here
+        int firstRepeat = INT_MAX;
+        
         unordered_map<int, int> mp;
         
-        int firstRepeat = INT_MAX;
         for(int i = 0; i < n; i++) {
             if(mp.find(arr[i]) == mp.end()) {
                 mp[arr[i]] = i;
@@ -24,7 +25,6 @@ class Solution {
             }
         }
         
-        // 1 base indexing
         return (firstRepeat == INT_MAX) ? -1 : firstRepeat+1;
     }
 };
