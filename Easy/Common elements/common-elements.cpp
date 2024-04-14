@@ -10,19 +10,21 @@ class Solution
        vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
         {
             //code here.
-            vector<int> commonElement;
-            int i = 0, j = 0, k = 0;
-            while(i < n1 && j < n2 && k < n3) {
-                
+            vector<int> ans;
+            
+            int i =0, j = 0, k = 0;
+            
+            while(i < n1 && j < n2 && k < n3){
                 if(A[i] == B[j] && B[j] == C[k]) {
                     
-                    if(commonElement.empty() || commonElement.back() != A[i]) {
-                        commonElement.push_back(A[i]);
+                    if(ans.empty()) {
+                        ans.push_back(A[i]);
+                    }
+                    else if(ans.back() != A[i]) {
+                        ans.push_back(A[i]);
                     }
                     
-                    i++;
-                    j++;
-                    k++;
+                    i++; j++; k++;
                 }
                 else if(A[i] < B[j] && A[i] < C[k]) {
                     i++;
@@ -35,7 +37,7 @@ class Solution
                 }
             }
             
-            return commonElement;
+            return ans;
         }
 
 };
