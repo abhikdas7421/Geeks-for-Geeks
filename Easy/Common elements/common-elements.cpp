@@ -12,19 +12,18 @@ class Solution
             //code here.
             vector<int> ans;
             
-            int i =0, j = 0, k = 0;
+            int i = 0, j = 0, k = 0;
             
-            while(i < n1 && j < n2 && k < n3){
+            while(i < n1 && j < n2 && k < n3) {
                 if(A[i] == B[j] && B[j] == C[k]) {
                     
-                    if(ans.empty()) {
-                        ans.push_back(A[i]);
-                    }
-                    else if(ans.back() != A[i]) {
+                    if(ans.empty() || ans.back() != A[i]) {
                         ans.push_back(A[i]);
                     }
                     
-                    i++; j++; k++;
+                    i++;
+                    j++;
+                    k++;
                 }
                 else if(A[i] < B[j] && A[i] < C[k]) {
                     i++;
