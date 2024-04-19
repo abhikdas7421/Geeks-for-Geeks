@@ -6,30 +6,31 @@ using namespace std;
 class Solution{   
 public:
     long maximumSumSubarray(int K, vector<int> &Arr , int N){
-        // code here 
-        long currSum = 0;
-        
-        // Process first k sized window
-        for(int i = 0; i < K; i++) {
-            currSum += Arr[i];
-        }
-        long maxSum = currSum;
+        // code here
+        long windowSum = 0;
+        long maxSum = 0;
         
         int i = 0;
-        int j = K;
-        // Process remaing K Sized window
+        int j = 0;
+        while(j < K) {
+            windowSum += Arr[j];
+            j++;
+        }
+        maxSum = windowSum;
+        
         while(j < N) {
-            currSum -= Arr[i];
-            currSum += Arr[j];
+            // subtract out of window element
+            windowSum -= Arr[i];
+            // add new element to windowSum
+            windowSum += Arr[j];
+            
             i++;
             j++;
             
-            maxSum = max(maxSum, currSum);
+            maxSum = max(maxSum, windowSum);
         }
         
         return maxSum;
-        
-        
     }
 };
 
