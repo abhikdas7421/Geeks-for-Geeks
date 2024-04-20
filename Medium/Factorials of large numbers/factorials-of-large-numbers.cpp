@@ -14,7 +14,6 @@ public:
         ans.push_back(1);
         
         for(int i = 2; i <= N; i++) {
-            
             int carry = 0;
             for(int j = 0; j < ans.size(); j++) {
                 int x = (ans[j]*i) + carry;
@@ -27,7 +26,6 @@ public:
                 carry /= 10;
             }
         }
-        
         reverse(ans.begin(), ans.end());
         return ans;
     }
