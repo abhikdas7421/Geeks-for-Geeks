@@ -16,26 +16,23 @@ public:
     {
         // code here 
         int n = arr.size();
-        
         int low = 0, mid = 0, high = n-1;
+        
         while(mid <= high) {
+            
             if(arr[mid] < a) {
-                swap(arr[mid], arr[low]);
+                swap(arr[low], arr[mid]);
                 low++;
                 mid++;
             }
             else if(arr[mid] > b) {
-                swap(arr[high], arr[mid]);
+                swap(arr[mid], arr[high]);
                 high--;
             }
             else {
                 mid++;
             }
         }
-        
-        // for(int &num : arr) {
-        //     cout << num << " ";
-        // }cout << endl;
     }
 };
 
