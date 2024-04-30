@@ -31,14 +31,6 @@ int main()
 
 void rotate(int arr[], int n)
 {
-    int lastElement = arr[n-1];
-    
-    int i = n-2;
-    while(i >= 0) {
-        arr[i+1] = arr[i];
-        i--;
-    }
-    
-    arr[0] = lastElement;
-    
+    reverse(arr, arr+n);
+    reverse(arr+1, arr+n);
 }
