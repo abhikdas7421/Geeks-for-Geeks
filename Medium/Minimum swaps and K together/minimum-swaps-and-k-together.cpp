@@ -21,9 +21,12 @@ public:
             }
         }
         
-        int minSwap = INT_MAX, currSwap = 0;
         
-        int i = 0, j = 0;
+        int minSwap = INT_MAX;
+        int currSwap = 0;
+        
+        int i = 0;
+        int j = 0;
         while(j < windowSize) {
             if(arr[j] > k) {
                 currSwap++;
@@ -43,6 +46,7 @@ public:
         }
         
         return minSwap;
+        
     }
 };
 
