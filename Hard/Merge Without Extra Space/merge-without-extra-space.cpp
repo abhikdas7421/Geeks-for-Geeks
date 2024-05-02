@@ -22,7 +22,6 @@ class Solution{
                 else {
                     break;
                 }
-                
             }
             
             sort(arr1, arr1+n);
